@@ -1,0 +1,67 @@
+<% include partials/_header %>
+
+
+
+<div class="container-fluid">
+    <div class="row mt-5">
+        <div class="col-md-9">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th>
+                        <th><center>Acciones</center></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if(data) { %>
+                        <% for(var i = 0; i < data.length; i++) { %>
+                            <tr>
+                                <td><%= (i + 1) %></td>
+                                <td><%= data[i].nombre %></pre>%></td>
+                                <td><%= data[i].apellido %></pre>%></td>
+                                <td><%= data[i].telefono %></pre>%></td>
+                                <td><%= data[i].direccion %></pre>%></td>
+                                <td>
+                                    <center>
+                                        <a href="/delete/<%= data[i].id_cliente %>" class="btn btn-danger">Eliminar</a>
+                                        <br>
+                                        <a href="/update/<%= data[i].id_cliente %>" class="btn btn-info">Actualizar</a>
+                                </center>
+                                </td>
+                            </tr>
+                        <% }%>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                            <form action="/add" method="post">
+                                <center>
+                                    <div class="form-group">
+                                        <input type="text" name="nombre" placeholder="Nombres" class="form-control" maxlength="50">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="apellido" placeholder="Apellidos" class="form-control" maxlength="50">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="telefono" placeholder="Teléfono" class="form-control" maxlength="9">
+                                    </div>    
+                                    <div class="form-group">
+                                        <input type="text" name="direccion" placeholder="Dirección" class="form-control" maxlength="100">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Guardar Cliente</button>
+                                </center>
+                            </form>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<%include partials/_footer%>
